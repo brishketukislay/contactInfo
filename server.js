@@ -6,10 +6,15 @@ const cors = require('cors');
 connectDb();
 
 const app = express();
+app.use(cors({
+    origin: '*',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    allowedHeaders: 'Content-Type,Authorization',
+  }));
 const port = process.env.PORT || 3001;
-app.use(cors,{
-    origin:'*'
-})
+// app.use(cors,{
+//     origin:'*'
+// })
 app.use(express.json()); // a parser to accept json from the client
 app.use('/api/contacts', require('./routes/contactsRoute'));
 app.use('/api/users', require('./routes/userRoute'));
